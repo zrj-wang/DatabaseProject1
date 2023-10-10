@@ -20,6 +20,7 @@ public time：视频对所有用户公开的时间。
 duration：视频持续时间。
 description：上传者提供的简要文本介绍。
 reviewer：视频审查员的mid。
+
 like：包含喜欢此视频的用户的mid的列表。
 coin：包含将硬币赠予此视频的用户的mid的列表。
 favorite：包含将此视频标记为喜爱的用户的mid的列表。
@@ -36,20 +37,23 @@ content：Danmu的内容。
 
 建表：
 表1
-用户表 
-Mid Name Sex Birthday Level Sign identity
+用户表
+User 
+Mid（主键）Name Sex Birthday Level Sign identity
 
-关注-被关注 （多对多）
+关注-被关注 
 
 表2
 关注信息表
-主键    用户id 关注者（用户关注了的人）id  （关注时间可添加）
+Following
+follow_id(主键)    user_Mid（外键）  follow_Mid（外键）  （关注时间可添加）
 
 表3
 视频表
-BV(主键), title ,owner mid，commit time，review time，public time，duration，description，reviewer
+Videos
+BV(主键), title ,owner_Mid(外键)，commit_time，review_time，public_time，duration，description，reviewer（外键）
 
-4+4
+4
 like：包含喜欢此视频的用户的mid的列表。
 coin：包含将硬币赠予此视频的用户的mid的列表。
 favorite：包含将此视频标记为喜爱的用户的mid的列表。
@@ -58,15 +62,20 @@ view：包含观看此视频的用户以及他们的最后观看时长的列表�
 
 对于这四个表，每一个表通过一个关系表来联系用户和视频
 表第一列都为主键 命名：like_id,coin_id等
-like_id  user_like_mid  movie_like_id
+表名 Like_relation。。。
+like_id（主键）  user_like_Mid(外键)  movie_like_id（外键）
 
-coin_id user_coin_mid   movie_coin_id
-以此类推
+coin_id user_coin_Mid   movie_coin_id
+
+favorite_id    user_favorite_Mid   movie_favorite_id    
+
+view_id  user_view_Mid  movie_view_id   view_time 
 
 
-表12
+
+表8
 弹幕表
-BV mid time content
+danmu_id（主键）  danmu_BV（外键）  danmu_Mid(外键)  time  content
 
 
 
