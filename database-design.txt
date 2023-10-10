@@ -1,0 +1,88 @@
+user.csv
+
+mid：用户的唯一识别号。
+name：用户创建的名字。
+sex：包括但不限于生物性别。
+birthday：用户的生日。
+level：根据系统决策标准评估的用户参与度。
+sign：用户创建的个人描述。
+following：包含该用户关注的所有用户的mid的列表。
+identity：一个取值为{"user", "superuser"}的值，表示用户的角色。
+
+videos.csv
+
+BV：视频的唯一识别字符串。
+title：视频所有者创建的视频名称。
+owner mid：视频所有者的mid。
+commit time：所有者提交此视频的时间。
+review time：视频由其审查员检查的时间。
+public time：视频对所有用户公开的时间。
+duration：视频持续时间。
+description：上传者提供的简要文本介绍。
+reviewer：视频审查员的mid。
+like：包含喜欢此视频的用户的mid的列表。
+coin：包含将硬币赠予此视频的用户的mid的列表。
+favorite：包含将此视频标记为喜爱的用户的mid的列表。
+view：包含观看此视频的用户以及他们的最后观看时长的列表。
+
+
+danmu.csv
+
+BV：发送Danmu的视频的BV。
+mid：发送Danmu的用户的mid。
+time：Danmu出现在视频中的时间。
+content：Danmu的内容。
+
+
+建表：
+表1
+用户表 
+Mid Name Sex Birthday Level Sign identity
+
+关注-被关注 （多对多）
+
+表2
+关注信息表
+主键    用户id 关注者（用户关注了的人）id  （关注时间可添加）
+
+表3
+视频表
+BV(主键), title ,owner mid，commit time，review time，public time，duration，description，reviewer
+
+4+4
+like：包含喜欢此视频的用户的mid的列表。
+coin：包含将硬币赠予此视频的用户的mid的列表。
+favorite：包含将此视频标记为喜爱的用户的mid的列表。
+view：包含观看此视频的用户以及他们的最后观看时长的列表。
+
+
+对于这四个表，每一个表通过一个关系表来联系用户和视频
+表第一列都为主键 命名：like_id,coin_id等
+like_id  user_like_mid  movie_like_id
+
+coin_id user_coin_mid   movie_coin_id
+以此类推
+
+
+表12
+弹幕表
+BV mid time content
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
