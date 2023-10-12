@@ -10,10 +10,9 @@ create table User_information (
 
 create table Following(
     follow_id int primary key,
-    user_Mid varchar(20) not null ,
-    follow_Mid varchar(20) not null ,
-    foreign key (user_Mid) references User_information (Mid),
-    foreign key (follow_id) references User_information(Mid)
+    user_Mid varchar(20) references User_information (Mid)not null ,
+    follow_Mid varchar(20) references User_information (Mid)not null 
+
 );
 
 create table Videos(
