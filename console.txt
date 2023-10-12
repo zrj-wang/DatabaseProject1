@@ -1,0 +1,65 @@
+create table User_information (
+    Mid VARCHAR(20) PRIMARY KEY,
+    Name VARCHAR(500) NOT NULL ,
+    Sex VARCHAR(10) NOT NULL CHECK ( Sex IN ('男','女','保密') ),
+    Birthday VARCHAR(15),
+    Level INT NOT NULL DEFAULT 0 CHECK (Level >= 0 AND Level <= 6),
+    Sign VARCHAR(500),
+    Identity VARCHAR(10) NOT NULL CHECK (Identity IN ('user', 'superuser'))
+);
+
+create table Following(
+    follow_id int primary key,
+    user_Mid varchar(20) references User_information (Mid)not null ,
+    follow_Mid varchar(20) references User_information (Mid)not null 
+
+);
+
+create table Videos(
+    BV varchar(15) primary key ,
+    title varchar(50) not null ,
+    owner_Mid varchar(20) references User_information(Mid) not null ,
+    commit_time timestamp,
+    review_time timestamp,
+    public_time timestamp,
+    duration int,
+    description varchar(500),
+    reviewer varchar(20) references User_information(Mid)
+);
+
+create table Like_relation(
+   like_id int primary key ,
+   user_like_Mid varchar(20) references User_information(Mid) not null ,
+   video_like_id varchar(15) references Videos(BV) not null
+);
+
+create table Coin_relation(
+    coin_id int primary key ,
+    user_coin_Mid varchar(20) references User_information(Mid) not null ,
+    video_coin_id varchar(15) references  Videos(BV) not null
+);
+
+create table Favorite_relation(
+    favorite_id int primary key ,
+    user_favorite_Mid varchar(20) references User_information(Mid) not null ,
+    video_favorite_id   varchar(20) references Videos(BV) not null
+);
+
+
+create table View_relation(
+    view_id int primary key ,
+    user_view_Mid varchar(20) references User_information(Mid) not null ,
+    video_view_id  varchar(20) references Videos(BV) not null ,
+    view_time int not null
+);
+
+
+create table Danmu(
+    danmu_id int primary key ,
+    danmu_BV varchar(15) references Videos(BV) not null ,
+    danmu_Mid varchar(20) references User_information(Mid) not null ,
+    time real not null ,
+    content varchar(500) not null
+                  );
+
+
