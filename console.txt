@@ -1,65 +1,65 @@
-create table User_information (
+create table user_information (
     Mid VARCHAR(20) PRIMARY KEY,
-    Name VARCHAR(500) NOT NULL ,
+    Name VARCHAR(100) NOT NULL ,
     Sex VARCHAR(10) NOT NULL CHECK ( Sex IN ('男','女','保密') ),
     Birthday VARCHAR(15),
     Level INT NOT NULL DEFAULT 0 CHECK (Level >= 0 AND Level <= 6),
-    Sign VARCHAR(500),
+    Sign VARCHAR(300),
     Identity VARCHAR(10) NOT NULL CHECK (Identity IN ('user', 'superuser'))
 );
 
-create table Following(
+create table following(
     follow_id int primary key,
-    user_Mid varchar(20) references User_information (Mid)not null ,
-    follow_Mid varchar(20) references User_information (Mid)not null 
+    user_Mid varchar(20) references user_information (Mid)not null ,
+    follow_Mid varchar(20) references user_information (Mid)not null
 
 );
 
-create table Videos(
-    BV varchar(15) primary key ,
+create table videos(
+    BV char(12) primary key ,
     title varchar(50) not null ,
-    owner_Mid varchar(20) references User_information(Mid) not null ,
+    owner_Mid varchar(20) references user_information(Mid) not null ,
     commit_time timestamp,
     review_time timestamp,
     public_time timestamp,
     duration int,
     description varchar(500),
-    reviewer varchar(20) references User_information(Mid)
+    reviewer varchar(20) references user_information(Mid)
 );
 
-create table Like_relation(
+create table like_relation(
    like_id int primary key ,
-   user_like_Mid varchar(20) references User_information(Mid) not null ,
-   video_like_id varchar(15) references Videos(BV) not null
+   user_like_Mid varchar(20) references user_information(Mid) not null ,
+   video_like_id char(12) references videos(BV) not null
 );
 
-create table Coin_relation(
+create table coin_relation(
     coin_id int primary key ,
-    user_coin_Mid varchar(20) references User_information(Mid) not null ,
-    video_coin_id varchar(15) references  Videos(BV) not null
+    user_coin_Mid varchar(20) references user_information(Mid) not null ,
+    video_coin_id char(12) references  videos(BV) not null
 );
 
-create table Favorite_relation(
+create table favorite_relation(
     favorite_id int primary key ,
-    user_favorite_Mid varchar(20) references User_information(Mid) not null ,
-    video_favorite_id   varchar(20) references Videos(BV) not null
+    user_favorite_Mid varchar(20) references user_information(Mid) not null ,
+    video_favorite_id   char(12) references videos(BV) not null
 );
 
 
-create table View_relation(
+create table view_relation(
     view_id int primary key ,
-    user_view_Mid varchar(20) references User_information(Mid) not null ,
-    video_view_id  varchar(20) references Videos(BV) not null ,
+    user_view_Mid varchar(20) references user_information(Mid) not null ,
+    video_view_id  char(12) references videos(BV) not null ,
     view_time int not null
 );
 
 
-create table Danmu(
+create table danmu(
     danmu_id int primary key ,
-    danmu_BV varchar(15) references Videos(BV) not null ,
-    danmu_Mid varchar(20) references User_information(Mid) not null ,
+    danmu_BV char(12) references videos(BV) not null ,
+    danmu_Mid varchar(20) references user_information(Mid) not null ,
     time real not null ,
     content varchar(500) not null
-                  );
+);
 
 
