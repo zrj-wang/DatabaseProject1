@@ -17,13 +17,13 @@ create table following(
 
 create table videos(
     BV char(12) primary key ,
-    title varchar(50) not null ,
+    title text not null ,
     owner_Mid varchar(20) references user_information(Mid)  on delete cascade  not null ,
     commit_time timestamp,
     review_time timestamp,
     public_time timestamp,
     duration int,
-    description varchar(500),
+    description text,
     reviewer varchar(20) references user_information(Mid)  on delete cascade
 );
 
@@ -59,7 +59,5 @@ create table danmu(
     danmu_BV char(12) references videos(BV)  on delete cascade not null ,
     danmu_Mid varchar(20) references user_information(Mid)  on delete cascade not null ,
     time real not null ,
-    content varchar(500) not null
+    content text not null
 );
-
-
