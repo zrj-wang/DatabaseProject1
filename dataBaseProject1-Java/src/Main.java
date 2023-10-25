@@ -12,7 +12,13 @@ import java.sql.*;
 public class Main {
     public static void main(String[] args) throws SQLException {
         long start = System.currentTimeMillis();
+            String jdbcURL = "jdbc:postgresql://localhost:5432/postgres";
+            String username = "postgres";
+            String password = "";
 
+            String csvFilePath = "D:/downloadnormal/users.csv";
+import_following_method b=new import_following_method();
+b.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
 
 
         // 记录结束时间

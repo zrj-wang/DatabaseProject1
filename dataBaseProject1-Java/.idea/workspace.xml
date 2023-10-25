@@ -5,22 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1f61232-7ef3-42d6-aa8c-dff2cc17afad" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../console.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../console.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dataBaseProject1-Java/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dataBaseProject1-Java/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/dataBaseProject1-Java/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dataBaseProject1-Java/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/dataBaseProject1-Java/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dataBaseProject1-Java/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/dataBaseProject1-Java/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dataBaseProject1-Java/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../databaseMap.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../数据库连接流程.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../数据库导入.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../数据库导入.docx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -40,6 +43,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "jdk.selected.JAVA_MODULE": "17",
     "last_opened_file_path": "D:/Dnormal/java/dass lab/lab4",
     "project.structure.last.edited": "Libraries",

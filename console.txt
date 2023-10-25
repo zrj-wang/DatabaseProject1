@@ -9,9 +9,9 @@ create table user_information (
 );
 
 create table following(
-    follow_id int primary key,
+    follow_id SERIAL primary key,
     user_Mid varchar(20) references user_information (Mid) on delete cascade not null ,
-    follow_Mid varchar(20) references user_information (Mid)  on delete cascade not null
+    follow_Mid varchar(20) references user_information (Mid) on delete cascade not null
 
 );
 
@@ -28,26 +28,26 @@ create table videos(
 );
 
 create table like_relation(
-   like_id int primary key ,
+   like_id SERIAL primary key ,
    user_like_Mid varchar(20) references user_information(Mid)  on delete cascade not null ,
    video_like_id char(12) references videos(BV)  on delete cascade not null
 );
 
 create table coin_relation(
-    coin_id int primary key ,
+    coin_id SERIAL primary key ,
     user_coin_Mid varchar(20) references user_information(Mid)  on delete cascade not null ,
     video_coin_id char(12) references  videos(BV)  on delete cascade not null
 );
 
 create table favorite_relation(
-    favorite_id int primary key ,
+    favorite_id SERIAL primary key ,
     user_favorite_Mid varchar(20) references user_information(Mid)  on delete cascade not null ,
     video_favorite_id   char(12) references videos(BV)  on delete cascade not null
 );
 
 
 create table view_relation(
-    view_id int primary key ,
+    view_id SERIAL primary key ,
     user_view_Mid varchar(20) references user_information(Mid)  on delete cascade not null ,
     video_view_id  char(12) references videos(BV)  on delete cascade not null ,
     view_time int not null
@@ -55,7 +55,7 @@ create table view_relation(
 
 
 create table danmu(
-    danmu_id int primary key ,
+    danmu_id SERIAL primary key ,
     danmu_BV char(12) references videos(BV)  on delete cascade not null ,
     danmu_Mid varchar(20) references user_information(Mid)  on delete cascade not null ,
     time real not null ,
