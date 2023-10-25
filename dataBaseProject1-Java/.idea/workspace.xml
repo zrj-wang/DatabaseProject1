@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c1f61232-7ef3-42d6-aa8c-dff2cc17afad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/import_relation_method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/import_relation_method.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
