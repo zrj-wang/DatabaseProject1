@@ -16,11 +16,11 @@ public class Main {
         String username = "postgres";
         String password = "";
 //
-        String csvFilePath = "D:/downloadnormal/data/users.csv";
+        String csvFilePath = "D:/downloadnormal/data/videos.csv";
 //
         select_method a=new select_method();
-        System.out.println(a.getCountFromCSV
-                (jdbcURL,username,password,csvFilePath,100)
+        System.out.println(a.getCountFromCSV2
+                (jdbcURL,username,password,csvFilePath,8000)
 );
 
 //        import_danmu_method b=new import_danmu_method();

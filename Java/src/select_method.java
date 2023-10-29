@@ -164,6 +164,99 @@ public class select_method {
         }
         return totalCount;
     }
+
+
+
+    public int getCountFromCSV2(String jdbcURL, String username, String password, String csvFilePath,int countmax) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int totalCount = 0;
+
+        List<String> bvs = new ArrayList<>();
+        try (Reader reader = new FileReader(csvFilePath);
+             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader())) { // Assuming CSV file has a header row
+            int count = 0;
+            for (CSVRecord record : csvParser) {
+                if (count >= countmax) {
+                    break;
+                }
+                bvs.add(record.get("bv")); // Assuming 'bv' is the column name in the CSV
+                count++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return totalCount; // Error handling, avoiding further execution
+        }
+
+        // Check if the list of BVs is empty
+        if (bvs.isEmpty()) {
+            return 0; // No BVs to query, returning 0
+        }
+
+        // Create a placeholder string for our SQL query
+        StringBuilder placeholderBuilder = new StringBuilder();
+        for (int i = 0; i < bvs.size(); i++) {
+            placeholderBuilder.append("?");
+            if (i < bvs.size() - 1) {
+                placeholderBuilder.append(",");
+            }
+        }
+        String placeholders = placeholderBuilder.toString();
+
+        try {
+            // Load JDBC driver
+            Class.forName("org.postgresql.Driver");
+
+            // Create a connection to the database
+            connection = DriverManager.getConnection(jdbcURL, username, password);
+
+            // Prepare SQL statement with placeholders for the IN clause
+            String sql = String.format("SELECT COUNT(*) AS total FROM danmu WHERE danmu_BV IN (%s)", placeholders);
+            statement = connection.prepareStatement(sql);
+
+            // Set the values for the placeholders
+            int index = 1;
+            for (String bv : bvs) {
+                statement.setString(index++, bv);
+            }
+
+            // Execute the query
+            resultSet = statement.executeQuery();
+
+            // Get the total count from the result set
+            if (resultSet.next()) {
+                totalCount = resultSet.getInt("total");
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close resources to avoid memory leaks
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return totalCount; // Return the total count
+    }
+
+
+
+
+
+
 }
 
 
