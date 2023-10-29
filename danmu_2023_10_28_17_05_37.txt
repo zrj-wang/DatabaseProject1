@@ -1,9 +1,0 @@
-1:1: 错误: null value in column "time" of relation "danmu" violates not-null constraint   详细：失败, 行包含(3, BV          , Mid, null, Content).
-4819449:45: actual: value separator (,), expected: record separator (\n)
-6862368:44: actual: value separator (,), expected: record separator (\n)
-7081080:40: actual: value separator (,), expected: record separator (\n)
-7678019:1: 错误: null value in column "content" of relation "danmu" violates not-null constraint   详细：失败, 行包含(7387661, BV1oZ4y1D7W7, 455849, 2594.203, null).
-7678020:1: 错误: null value in column "content" of relation "danmu" violates not-null constraint   详细：失败, 行包含(7387662, BV1oZ4y1D7W7, 1297219, 2586.489, null).
-8785087:70: actual: value separator (,), expected: record separator (\n)
-10023668:36: actual: value separator (,), expected: record separator (\n)
-11985933:33: actual: value separator (,), expected: record separator (\n)
