@@ -11,7 +11,7 @@ public class import_user_method {
                     CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim())
             ) {
                 connection.setAutoCommit(false);
-                String sql = "INSERT INTO user_information (Mid, Name, Sex, Birthday, Level, Sign, Identity) " +
+                String sql = "INSERT INTO user_information2 (Mid, Name, Sex, Birthday, Level, Sign, Identity) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
                 try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -34,7 +34,7 @@ public class import_user_method {
                         statement.setString(7, column7);
                         statement.addBatch();
 
-                        if (count % 1000 == 0) {
+                        if (count % 300 == 0) {
                             statement.executeBatch();
                         }
                         count++;

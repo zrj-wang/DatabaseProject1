@@ -15,10 +15,34 @@ public class Main {
         String jdbcURL = "jdbc:postgresql://localhost:5432/postgres";
         String username = "postgres";
         String password = "";
+//
+        String csvFilePath = "D:/downloadnormal/data/videos.csv";
+//
+        select_method a=new select_method();
+        System.out.println(a.getCountFromCSV2
+                (jdbcURL,username,password,csvFilePath,8000)
+);
 
-        String csvFilePath = "D:/downloadnormal/users.csv";
-        import_following_method b=new import_following_method();
-        b.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
+//        import_danmu_method b=new import_danmu_method();
+//        b.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
+//
+
+//        delete
+//        delete_method a=new delete_method();
+//        a.deleteRowsFrom(jdbcURL,username,password,0,1);
+
+//
+//        //update
+//            update_method u=new update_method();
+//            u.replaceNullWithSpecifiedValue(jdbcURL,username,password,
+//         "user_information2","sign", "project");
+//        u.replaceNullWithSpecifiedValue(jdbcURL,username,password,
+//                "user_information2","birthday", "project");
+
+
+        //insert
+//        insert_method d=new insert_method();
+//        d.insertCSVToDatabase(csvFilePath,jdbcURL,username,password);
 
 
         // 记录结束时间
