@@ -16,29 +16,32 @@ public class Main {
         String username = "postgres";
         String password = "";
 //
-        String csvFilePath = "D:/downloadnormal/data/videos.csv";
+        String csvFilePath = "D:/downloadnormal/data/danmu.csv";
 //
-        select_method a=new select_method();
-        System.out.println(a.getCountFromCSV2
-                (jdbcURL,username,password,csvFilePath,8000)
-);
+//        select_method a=new select_method();
+//        System.out.println(a.getCountFromCSV2
+//                (jdbcURL,username,password,csvFilePath,8000)
+//);
 
 //        import_danmu_method b=new import_danmu_method();
 //        b.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
-//
 
-//        delete
-//        delete_method a=new delete_method();
-//        a.deleteRowsFrom(jdbcURL,username,password,0,1);
+//        better_import_method a=new better_import_method();
+//        a.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
+
+
+     //   delete
+        delete_method a=new delete_method();
+        a.deleteRowsFrom1(jdbcURL,username,password,100000,300000);
 
 //
 //        //update
 //            update_method u=new update_method();
 //            u.replaceNullWithSpecifiedValue(jdbcURL,username,password,
-//         "user_information2","sign", "project");
+//         "user_information","sign", "project");
 //        u.replaceNullWithSpecifiedValue(jdbcURL,username,password,
-//                "user_information2","birthday", "project");
-
+//                "user_information","birthday", "project");
+//
 
         //insert
 //        insert_method d=new insert_method();

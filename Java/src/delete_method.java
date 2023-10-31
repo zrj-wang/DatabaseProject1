@@ -86,4 +86,61 @@ public class delete_method {
             }
         }
     }
+
+
+        public void deleteRowsFrom1(String jdbcURL, String username, String password, int startingId, int numOfRowsToDelete) {
+            Connection connection = null;
+            PreparedStatement deleteStatement = null;
+
+            try {
+                // 加载PostgreSQL JDBC驱动程序
+                Class.forName("org.postgresql.Driver");
+
+                // 连接数据库
+                connection = DriverManager.getConnection(jdbcURL, username, password);
+                connection.setAutoCommit(false); // 对于性能很重要
+
+                // 为删除操作准备SQL命令
+                String deleteSql = "DELETE FROM danmu WHERE danmu_id BETWEEN ? AND ?";
+                deleteStatement = connection.prepareStatement(deleteSql);
+
+                deleteStatement.setInt(1, startingId);
+                deleteStatement.setInt(2, startingId + numOfRowsToDelete - 1);
+                int count = deleteStatement.executeUpdate();
+
+                // 提交更改
+                connection.commit();
+
+                System.out.println(count + " 行数据已被删除!");
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                try {
+                    if (connection != null) {
+                        connection.rollback(); // 在出现错误时回滚事务
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            } finally {
+                try {
+                    if (deleteStatement != null) {
+                        deleteStatement.close();
+                    }
+                    if (connection != null) {
+                        connection.close(); // 关闭数据库连接
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+
+
+
+
 }

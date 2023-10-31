@@ -21,7 +21,7 @@ public class update_method {
             connection = DriverManager.getConnection(j,u,p);
 
             // 构建SQL语句
-            String updateSQL = "UPDATE " + tableName + " SET " + columnName + " = ? WHERE " + columnName + "= '' ";
+            String updateSQL = "UPDATE " + tableName + " SET " + columnName + " = ? WHERE " + columnName + " is null ";
 
             pstmt = connection.prepareStatement(updateSQL);
             pstmt.setString(1, replaceValue);
