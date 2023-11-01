@@ -19,15 +19,21 @@ public class update_method {
 
             // 建立连接
             connection = DriverManager.getConnection(j,u,p);
+            long start = System.currentTimeMillis();
 
             // 构建SQL语句
-            String updateSQL = "UPDATE " + tableName + " SET " + columnName + " = ? WHERE " + columnName + " is null ";
+            String updateSQL = "UPDATE " + tableName + " SET " + columnName + " = ? WHERE " + columnName + "='' ";
 
             pstmt = connection.prepareStatement(updateSQL);
             pstmt.setString(1, replaceValue);
 
             int updatedRows = pstmt.executeUpdate();
             System.out.println("更新了 " + updatedRows + " 行.");
+            long end = System.currentTimeMillis();
+
+            // 计算并打印耗费的时间
+            long elapsedTime = end - start;
+            System.out.println("总共耗时: " + elapsedTime + " 毫秒");
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

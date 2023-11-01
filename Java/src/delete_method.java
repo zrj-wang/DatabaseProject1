@@ -98,6 +98,7 @@ public class delete_method {
 
                 // 连接数据库
                 connection = DriverManager.getConnection(jdbcURL, username, password);
+                long start = System.currentTimeMillis();
                 connection.setAutoCommit(false); // 对于性能很重要
 
                 // 为删除操作准备SQL命令
@@ -112,6 +113,11 @@ public class delete_method {
                 connection.commit();
 
                 System.out.println(count + " 行数据已被删除!");
+                long end = System.currentTimeMillis();
+
+                // 计算并打印耗费的时间
+                long elapsedTime = end - start;
+                System.out.println("总共耗时: " + elapsedTime + " 毫秒");
 
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
