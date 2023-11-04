@@ -92,6 +92,7 @@ public class select_method {
 
 
     public int getCountFromCSV1(String jdbcURL, String username, String password, String csvFilePath, int maxRowsToRead) {
+        //这个是累加计数的？？？
         int maxRowsToQuery=maxRowsToRead;
         Connection connection = null;
         PreparedStatement statement = null;
@@ -121,6 +122,8 @@ public class select_method {
 
             // 连接数据库
             connection = DriverManager.getConnection(jdbcURL, username, password);
+//            long start = System.currentTimeMillis();
+
 
             // 为查询操作准备SQL命令
             String sql = "SELECT count(*) AS total FROM danmu WHERE danmu_mid = ? LIMIT ?";
@@ -145,6 +148,11 @@ public class select_method {
                 resultSet.close();
                 rowsQueried++;
             }
+//            long end = System.currentTimeMillis();
+//
+//            // 计算并打印耗费的时间
+//            long elapsedTime = end - start;
+//            System.out.println("总共耗时: " + elapsedTime + " 毫秒");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -167,7 +175,7 @@ public class select_method {
 
 
 
-    public int getCountFromCSV2(String jdbcURL, String username, String password, String csvFilePath,int countmax) {
+    public void getCountFromCSV2(String jdbcURL, String username, String password, String csvFilePath,int countmax) {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -186,12 +194,12 @@ public class select_method {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return totalCount; // Error handling, avoiding further execution
+            System.out.print(totalCount); // Error handling, avoiding further execution
         }
 
         // Check if the list of BVs is empty
         if (bvs.isEmpty()) {
-            return 0; // No BVs to query, returning 0
+            System. out.print(0); // No BVs to query, returning 0
         }
 
         // Create a placeholder string for our SQL query
@@ -210,6 +218,8 @@ public class select_method {
 
             // Create a connection to the database
             connection = DriverManager.getConnection(jdbcURL, username, password);
+            long start = System.currentTimeMillis();
+
 
             // Prepare SQL statement with placeholders for the IN clause
             String sql = String.format("SELECT COUNT(*) AS total FROM danmu WHERE danmu_BV IN (%s)", placeholders);
@@ -228,6 +238,10 @@ public class select_method {
             if (resultSet.next()) {
                 totalCount = resultSet.getInt("total");
             }
+            long end = System.currentTimeMillis();
+            // 计算并打印耗费的时间
+            long elapsedTime = end - start;
+            System.out.println("总共耗时: " + elapsedTime + " 毫秒");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -249,7 +263,86 @@ public class select_method {
             }
         }
 
-        return totalCount; // Return the total count
+        System.out.println(totalCount); // Return the total count
+    }
+
+
+
+
+    public void getCountFromCSV3(String jdbcURL, String username, String password, String csvFilePath, int maxRowsToRead) {
+        //比较快的、
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int totalCount = 0;
+        List<String> ids = new ArrayList<>();
+        int currentRow = 0;
+
+        // 直接在此处处理CSV文件
+        try (Reader reader = new FileReader(csvFilePath);
+             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
+            for (CSVRecord record : csvParser) {
+                if (currentRow >= maxRowsToRead) {
+                    break; // 如果达到最大行数，停止读取
+                }
+                ids.add(record.get(0)); // 获取第一列的数据
+                currentRow++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.print(totalCount); // 在这里处理错误情况，避免后续代码执行
+        }
+
+        // 构建SQL中的IN子句
+        String inClause = String.join(",", Collections.nCopies(ids.size(), "?"));
+
+        try {
+            // 加载PostgreSQL JDBC驱动程序
+            Class.forName("org.postgresql.Driver");
+
+            // 连接数据库
+            connection = DriverManager.getConnection(jdbcURL, username, password);
+            long start = System.currentTimeMillis();
+            // 为查询操作准备SQL命令
+            String sql = "SELECT count(*) AS total FROM danmu WHERE danmu_mid IN (" + inClause + ")";
+            statement = connection.prepareStatement(sql);
+
+            // 将所有ID设置到查询中
+            int index = 1;
+            for (String id : ids) {
+                statement.setString(index++, id);
+            }
+
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                totalCount = resultSet.getInt("total");
+            }
+            long end = System.currentTimeMillis();
+            // 计算并打印耗费的时间
+            long elapsedTime = end - start;
+            System.out.println("总共耗时: " + elapsedTime + " 毫秒");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close(); // 关闭数据库连接
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(totalCount);
     }
 
 

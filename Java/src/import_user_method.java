@@ -10,8 +10,9 @@ public class import_user_method {
                     Reader reader = new FileReader(csvFilePath);
                     CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim())
             ) {
+
                 connection.setAutoCommit(false);
-                String sql = "INSERT INTO user_information2 (Mid, Name, Sex, Birthday, Level, Sign, Identity) " +
+                String sql = "INSERT INTO user_information (Mid, Name, Sex, Birthday, Level, Sign, Identity) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
                 try (PreparedStatement statement = connection.prepareStatement(sql)) {
