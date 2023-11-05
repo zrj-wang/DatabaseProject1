@@ -174,7 +174,7 @@ public class select_method {
     }
 
 
-
+// video
     public void getCountFromCSV2(String jdbcURL, String username, String password, String csvFilePath,int countmax) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -268,7 +268,7 @@ public class select_method {
 
 
 
-
+//user
     public void getCountFromCSV3(String jdbcURL, String username, String password, String csvFilePath, int maxRowsToRead) {
         //比较快的、
         Connection connection = null;

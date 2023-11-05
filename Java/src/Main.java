@@ -11,21 +11,23 @@ import java.sql.*;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-
+    long begin=System.currentTimeMillis();
         String jdbcURL = "jdbc:postgresql://localhost:5432/postgres";
         String username = "postgres";
-        String password = "";
+        String password = "James6112";
 //
-        String csvFilePath = "D:/downloadnormal/data/videos1.csv";
+        String csvFilePath = "D:\\data\\danmu.csv";
 //
-        select_method a=new select_method();
-       a.getCountFromCSV2
-                (jdbcURL,username,password,csvFilePath,30000);
+//        select_method a=new select_method();
+//       a.getCountFromCSV2
+//                (jdbcURL,username,password,csvFilePath,30000);
 
 
 
-//        import_user_method b=new import_user_method();
-//        b.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
+        import_danmu_method b=new import_danmu_method();
+        b.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
+        long end=System.currentTimeMillis();
+        System.out.print(end-begin );
 
 //        import_videos_method b=new import_videos_method();
 //        b.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
