@@ -11,18 +11,28 @@ import java.sql.*;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-
-        String jdbcURL = "jdbc:postgresql://localhost:5432/postgres";
-        String username = "postgres";
-        String password = "";
+        long st=System.currentTimeMillis();
 //
-        String csvFilePath = "D:/downloadnormal/data/videos1.csv";
+//        String jdbcURL = "jdbc:postgresql://localhost:5432/postgres";
+//        String username = "postgres";
+//        String password = "";
+//        String csvFilePath = "D:/downloadnormal/data/videos1.csv";
+
+        String jdbcURL = "jdbc:mysql://localhost:3306/mysql";
+        String username = "root";
+        String password = "a85144492";
+        String csvFilePath = "D:/downloadnormal/data/danmu.csv";
+
 //
-        select_method a=new select_method();
-       a.getCountFromCSV2
-                (jdbcURL,username,password,csvFilePath,30000);
+
+//        select_method a=new select_method();
+//       a.getCountFromCSV2
+//                (jdbcURL,username,password,csvFilePath,10000);
 
 
+
+//        import_mysql a=new import_mysql();
+//        a.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
 
 //        import_user_method b=new import_user_method();
 //        b.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
@@ -47,12 +57,13 @@ public class Main {
 //                "user_information2","birthday", "project");
 //
 
-    //    insert
+//      //  insert
 //        insert_method d=new insert_method();
 //        d.insertCSVToDatabase1(csvFilePath,jdbcURL,username,password);
 
 
-
+    long en= System.currentTimeMillis();
+    System.out.print(en-st);
     }
 
 
