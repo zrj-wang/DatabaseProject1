@@ -1,56 +1,27 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+
+import java.io.FileReader;
+import java.io.Reader;
+import java.sql.*;
 
 public class update_method {
 
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/yourdatabase";
-    private static final String USER = "yourusername";
-    private static final String PASS = "yourpassword";
-
-    public  void replaceNullWithSpecifiedValue(String j,String u,String p,String tableName, String columnName, String replaceValue) {
-        Connection connection = null;
-        PreparedStatement pstmt = null;
-
-        try {
-            // 加载PostgreSQL JDBC驱动程序
-            Class.forName("org.postgresql.Driver");
-
-            // 建立连接
-            connection = DriverManager.getConnection(j,u,p);
-            long start = System.currentTimeMillis();
-
-            // 构建SQL语句
-            String updateSQL = "UPDATE " + tableName + " SET " + columnName + " = ? WHERE " + columnName + "='' ";
-
-            pstmt = connection.prepareStatement(updateSQL);
-            pstmt.setString(1, replaceValue);
-
-            int updatedRows = pstmt.executeUpdate();
-            System.out.println("更新了 " + updatedRows + " 行.");
-            long end = System.currentTimeMillis();
-
-            // 计算并打印耗费的时间
-            long elapsedTime = end - start;
-            System.out.println("总共耗时: " + elapsedTime + " 毫秒");
-
-        } catch (ClassNotFoundException | SQLException e) {
+    public void importCsvToDatabase(String jdbcURL, String username, String password,String tableName, String columnName, String replaceValue) {
+        try (
+                Connection connection = DriverManager.getConnection(jdbcURL, username, password);
+        ) {
+            connection.setAutoCommit(false);
+            long startTime = System.currentTimeMillis();
+            String updateSQL = "UPDATE " + tableName + " SET " + columnName + " = "+replaceValue+" WHERE " + columnName + "='' ";
+            PreparedStatement statement =connection.prepareStatement(updateSQL);
+            statement.executeUpdate();
+            long endTime = System.currentTimeMillis();
+            System.out.println("总耗时: " + (endTime - startTime) + "ms");
+        } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            // 关闭资源
-            try {
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-    }
 
+    }
 
 }

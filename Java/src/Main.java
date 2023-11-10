@@ -38,10 +38,22 @@ public class Main {
 
 //        long st=System.currentTimeMillis();
 //
+<<<<<<< HEAD
 //        String jdbcURL = "jdbc:postgresql://localhost:5432/postgres";
 //        String username = "postgres";
 //        String password = "";
 //        String csvFilePath = "D:/downloadnormal/data/videos1.csv";
+
+//        String jdbcURL = "jdbc:mysql://localhost:3306/mysql";
+//        String username = "root";
+//        String password = "a85144492";
+//        String csvFilePath = "D:/downloadnormal/data/danmu.csv";
+=======
+        String jdbcURL = "jdbc:postgresql://localhost:5432/postgres";
+        String username = "postgres";
+        String password = "";
+        String csvFilePath = "D:/downloadnormal/data/danmu.csv";
+>>>>>>> 4813ae85f5ebc94e5c9aba0677861f0983ac7a75
 
 //        String jdbcURL = "jdbc:mysql://localhost:3306/mysql";
 //        String username = "root";
