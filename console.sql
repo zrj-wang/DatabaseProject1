@@ -1,0 +1,71 @@
+create table user_information (
+    Mid VARCHAR(20) PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL ,
+    Sex VARCHAR(10) NOT NULL CHECK ( Sex IN ('男','女','保密') ),
+    Birthday VARCHAR(15),
+    Level INT NOT NULL DEFAULT 0 CHECK (Level >= 0 AND Level <= 6),
+    Sign VARCHAR(300),
+    Identity VARCHAR(10) NOT NULL CHECK (Identity IN ('user', 'superuser'))
+);
+
+create table following(
+    follow_id SERIAL primary key,
+    user_Mid varchar(20) references user_information (Mid) on delete cascade not null ,
+    follow_Mid varchar(20) references user_information (Mid) on delete cascade not null
+
+);
+
+create table videos(
+    BV char(12) primary key ,
+    title text not null ,
+    owner_Mid varchar(20) references user_information(Mid)  on delete cascade  not null ,
+    commit_time timestamp,
+    review_time timestamp,
+    public_time timestamp,
+    duration int,
+    description text,
+    reviewer varchar(20) references user_information(Mid)  on delete cascade
+);
+
+create table like_relation(
+   like_id SERIAL primary key ,
+   video_like_id char(12) references videos(BV)  on delete cascade not null,
+   user_like_Mid varchar(20) references user_information(Mid)  on delete cascade not null
+
+);
+
+create table coin_relation(
+    coin_id SERIAL primary key ,
+    video_coin_id char(12) references  videos(BV)  on delete cascade not null,
+    user_coin_Mid varchar(20) references user_information(Mid)  on delete cascade not null
+
+);
+
+create table favorite_relation(
+    favorite_id SERIAL primary key ,
+     video_favorite_id   char(12) references videos(BV)  on delete cascade not null,
+    user_favorite_Mid varchar(20) references user_information(Mid)  on delete cascade not null
+
+);
+
+
+create table view_relation(
+    view_id SERIAL primary key ,
+    video_view_id  char(12) references videos(BV)  on delete cascade not null ,
+    user_view_Mid varchar(20) references user_information(Mid)  on delete cascade not null ,
+    view_time int not null
+);
+
+
+create table danmu(
+    danmu_id SERIAL primary key ,
+    danmu_BV char(12) references videos(BV)  on delete cascade not null ,
+    danmu_Mid varchar(20) references user_information(Mid)  on delete cascade not null ,
+    time real not null ,
+    content text
+);
+
+
+
+
+
