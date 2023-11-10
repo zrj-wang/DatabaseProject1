@@ -42,13 +42,6 @@ public class import_mysql {
                     connection.setAutoCommit(true);
                     System.out.println("数据已成功导入数据库表中.");
                 }
-            } catch (SQLException ex) {
-                System.err.println("数据库操作出错: " + ex.getMessage());
-                ex.printStackTrace();
-            } catch (FileNotFoundException ex) {
-                System.err.println("未找到CSV文件: " + ex.getMessage());
-            } catch (IOException ex) {
-                System.err.println("读取文件时出错: " + ex.getMessage());
             }
         } catch (Exception e) {
             e.printStackTrace();

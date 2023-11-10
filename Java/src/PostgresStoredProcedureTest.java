@@ -15,18 +15,16 @@ public class PostgresStoredProcedureTest {
 
     public static void main(String[] args) {
 
-        // 模拟生产者线程，模拟查询请求
         new Thread(() -> {
-            for (int i = 0; i < 100; i++) { // 模拟100次请求
+            for (int i = 0; i < 100; i++) {
                 try {
-                    queue.put("1703941"); // 将请求放入队列
+                    queue.put("1703941");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
 
-        // 模拟消费者线程，执行存储过程调用
         new Thread(() -> {
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
                  CallableStatement cstmt = conn.prepareCall("{? = call get_danmu_count(?)}")) {
@@ -34,8 +32,8 @@ public class PostgresStoredProcedureTest {
                 // 记录开始时间
                 long startTime = System.currentTimeMillis();
 
-                for (int i = 0; i < 100; i++) { // 假设执行100次存储过程调用
-                    String danmuMid = queue.take(); // 从队列中取出请求
+                for (int i = 0; i < 100; i++) {
+                    String danmuMid = queue.take();
                     cstmt.registerOutParameter(1, Types.INTEGER);
                     cstmt.setString(2, danmuMid);
 

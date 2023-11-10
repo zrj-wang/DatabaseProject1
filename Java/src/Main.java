@@ -13,15 +13,15 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         long st=System.currentTimeMillis();
 //
-//        String jdbcURL = "jdbc:postgresql://localhost:5432/postgres";
-//        String username = "postgres";
-//        String password = "";
-//        String csvFilePath = "D:/downloadnormal/data/videos1.csv";
-
-        String jdbcURL = "jdbc:mysql://localhost:3306/mysql";
-        String username = "root";
-        String password = "a85144492";
+        String jdbcURL = "jdbc:postgresql://localhost:5432/postgres";
+        String username = "postgres";
+        String password = "";
         String csvFilePath = "D:/downloadnormal/data/danmu.csv";
+
+//        String jdbcURL = "jdbc:mysql://localhost:3306/mysql";
+//        String username = "root";
+//        String password = "a85144492";
+//        String csvFilePath = "D:/downloadnormal/data/danmu.csv";
 
 //
 

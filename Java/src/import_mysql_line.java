@@ -61,9 +61,6 @@ public class import_mysql_line{
                 statement.executeBatch();
                 connection.commit();
                 System.out.println("数据已成功导入数据库表中.");
-            } catch (SQLException ex) {
-                System.err.println("数据库操作出错: " + ex.getMessage());
-                ex.printStackTrace();
             }
         } catch (SQLException e) {
             e.printStackTrace();

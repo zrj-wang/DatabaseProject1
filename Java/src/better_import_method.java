@@ -5,8 +5,8 @@ import java.util.concurrent.*;
 import org.apache.commons.csv.*;
 
 public class better_import_method {
-    private static final int THREAD_COUNT = 6; // 或者你希望的线程数量
-    private static final int BATCH_SIZE = 300;
+    private static final int THREAD_COUNT = 6;
+
 
     public void importCsvToDatabase(String jdbcURL, String username, String password, String csvFilePath) {
         ExecutorService executor = Executors.newFixedThreadPool(THREAD_COUNT);
@@ -52,7 +52,7 @@ public class better_import_method {
 
                     statement.addBatch();
 
-                    if (count % BATCH_SIZE == 0) {
+                    if (count % 300 == 0) {
                         statement.executeBatch();
                     }
                     count++;
@@ -61,9 +61,6 @@ public class better_import_method {
                 statement.executeBatch();
                 connection.commit();
                 System.out.println("数据已成功导入数据库表中.");
-            } catch (SQLException ex) {
-                System.err.println("数据库操作出错: " + ex.getMessage());
-                ex.printStackTrace();
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -38,7 +38,7 @@ content：Danmu的内容。
 建表：
 表1
 用户表
-User_information 
+M 
 Mid（主键)（字符串），  Name（字符串）， Sex（字符串）， Birthday（可以为空）（字符串）， Level（不能为空）（默认0）（范围0-6），Sign（可以为空）（字符串） ， identity（二选一，user,superuser）
 
 关注-被关注 
