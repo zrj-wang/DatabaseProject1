@@ -11,7 +11,7 @@ import java.sql.*;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-<<<<<<< HEAD
+
     long begin=System.currentTimeMillis();
         String jdbcURL = "jdbc:postgresql://localhost:5432/postgres";
         String username = "postgres";
@@ -29,18 +29,24 @@ public class Main {
         b.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
         long end=System.currentTimeMillis();
         System.out.print(end-begin );
-=======
-        long st=System.currentTimeMillis();
+    }
+
+
+
+
+}
+
+//        long st=System.currentTimeMillis();
 //
 //        String jdbcURL = "jdbc:postgresql://localhost:5432/postgres";
 //        String username = "postgres";
 //        String password = "";
 //        String csvFilePath = "D:/downloadnormal/data/videos1.csv";
 
-        String jdbcURL = "jdbc:mysql://localhost:3306/mysql";
-        String username = "root";
-        String password = "a85144492";
-        String csvFilePath = "D:/downloadnormal/data/danmu.csv";
+//        String jdbcURL = "jdbc:mysql://localhost:3306/mysql";
+//        String username = "root";
+//        String password = "a85144492";
+//        String csvFilePath = "D:/downloadnormal/data/danmu.csv";
 
 //
 
@@ -55,7 +61,7 @@ public class Main {
 
 //        import_user_method b=new import_user_method();
 //        b.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
->>>>>>> 263630ee9c7dda0e7e5e08004ded3ad17e7aded1
+
 
 //        import_videos_method b=new import_videos_method();
 //        b.importCsvToDatabase(jdbcURL,username,password,csvFilePath);
@@ -82,11 +88,3 @@ public class Main {
 //        d.insertCSVToDatabase1(csvFilePath,jdbcURL,username,password);
 
 
-    long en= System.currentTimeMillis();
-    System.out.print(en-st);
-    }
-
-
-
-
-}
